@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bài tập 1 - giao diện giống web khoa</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <style> 
+        #message {color: red;}
+        #slideshow {
+            display: flex;
+            overflow: hidden;
+        }
+        .slide {
+            width: 16.66%;
+            transition: transform 1s ease-in-out;
+        }
+        .slide img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <img src="banner2.jpg">
+    </div>
+    <div class="ulli">
+        <ul>
+            <li><a href="#">Tuyển sinh</a></li>
+            <li><a href="#">Hợp tác quốc tế</a></li>
+            <li><a href="#">Nghiên cứu khoa học</a></li>
+            <li><a href="#">Sinh viên</a></li>
+            <li><a href="#">Văn bản</a></li>
+            <li><a href="#">Thi đua</a></li>
+            <li><a href="#">Thư viện</a></li>
+        </ul>
+    </div>
+    <h3 id="message">QUYẾT ĐỊNH CÔNG NHẬN ĐIỂM TRÚNG TUYỂN ĐẠI HỌC HÌNH THỨC CHÍNH QUY ĐỢT 1 NĂM 2022</h3>
+
+    <button onclick="hideAlways()">Ẩn luôn</button>
+    <button onclick="showAlways()">Hiện luôn</button>
+    <button onclick="hideSlowly()">Ẩn từ từ</button>
+    <button onclick="showSlowly()">Hiện từ từ</button>
+    <button onclick="changeColor('red')">Chữ đỏ</button>
+    <button onclick="changeColor('blue')">Chữ xanh</button>
+
+  <script>
+        function hideAlways() {
+            document.getElementById('message').style.display = 'none';
+        }
+        function showAlways() {
+            document.getElementById('message').style.display = 'block';
+        }
+
+        function hideSlowly() {
+            var messageElement = document.getElementById('message');
+            var opacity = 1;
+            var interval = setInterval(function() {
+                if (opacity <= 0) {
+                clearInterval(interval);
+                messageElement.style.display = 'none';
+                } else {
+                    opacity -= 0.01;
+                    messageElement.style.opacity = opacity;
+                }
+            }, 30);
+        }
+
+        function showSlowly() {
+            var messageElement = document.getElementById('message');
+            messageElement.style.display = 'block';
+            var opacity = 0;
+            var interval = setInterval(function() {
+                if (opacity >= 1) {
+                clearInterval(interval);
+                } else {
+                opacity += 0.01;
+                    messageElement.style.opacity = opacity;
+                }
+            }, 30);
+        }
+
+        function changeColor(color) {
+            document.getElementById('message').style.color = color;
+        }
+    </script>
+    <form id="myForm">
+        <label for="name">Tên:</label>
+        <input type="text" id="name" name="name" required>
+      
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      
+        <label for="gender">Giới tính:</label>
+        <select id="gender" name="gender" required>
+            <option value="">Chọn giới tính</option>
+            <option value="male">Nam</option>
+            <option value="female">Nữ</option>
+        </select>
+        <button type="submit">Gửi</button>
+    </form>
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+        var nameInput = document.getElementById('name');
+        var emailInput = document.getElementById('email');
+        var genderInput = document.getElementById('gender');
+
+        if (!nameInput.value || !emailInput.value || !genderInput.value) {
+        alert('Vui lòng điền đầy đủ thông tin');
+        event.preventDefault();
+    }
+    });
+    </script>
+    <div id="slideshow">
+        <div class="slide"><img src="images/250-24400-ssd0000032ssd0000032.jpg"></div>
+        <div class="slide"><img src="images/tan1.jpg"></div>
+        <div class="slide"><img src="images/250-24400-ssd0000032ssd0000032.jpg"></div>
+        <div class="slide"><img src="images/250-22917-pk0000007.jpg"></div>
+        <div class="slide"><img src="images/250-25110-loa000006loa000006.jpg"></div>
+        <div class="slide"><img src="images/250-25529-asdasd.jpg"></div>
+        <div class="slide" style="display: none;"><img src="images/250-25110-loa000006loa000006.jpg"></div>
+        <div class="slide" style="display: none;"><img src="images/250-25529-asdasd.jpg"></div>
+        <div class="slide" style="display: none;"><img src="images/250-16108-sp001606sp001606.jpg"></div>
+        <div class="slide" style="display: none;"><img src="images/250-22917-pk0000007.jpg"></div>
+        <div class="slide" style="display: none;"><img src="images/250-24400-ssd0000032ssd0000032.jpg"></div>
+        <div class="slide" style="display: none;"><img src="images/laptop1.png"></div>
+    </div>
+    <button onclick="previousSlide()">&#8249;</button>
+    <button onclick="nextSlide()">&#8250;</button>
+    <script>
+        var slideIndex = 0;
+        var slides = document.getElementsByClassName('slide');
+        function showSlides() {
+            for (var i = 0; i < slides.length; i++) {
+                if (i >= slideIndex && i < slideIndex + 6) {
+                    slides[i].style.display = 'block';
+                } else {
+                    slides[i].style.display = 'none';
+                }
+            }
+        }
+        function previousSlide() {
+            if (slideIndex > 0) {
+                slideIndex--;
+                showSlides();
+            }
+        }
+        function nextSlide() {
+            if (slideIndex < slides.length - 6) {
+                slideIndex++;
+                showSlides();
+            }
+        }
+        showSlides();
+    </script>
+    <div class="header1">
+        <h1>
+            Tin mới nhất
+        </h1>
+        <div class="tinmoinhat">
+            <div class="tenbaiviet">
+                <img src="image_1.jpg">
+                <p>Tên bài viết</p>
+            </div>
+            <div class="tenbaiviet">
+                <img src="image_1.jpg">
+                <p>Tên bài viết</p>
+            </div>
+            <div class="tenbaiviet">
+                <img src="image_1.jpg">
+                <p>Tên bài viết</p>
+            </div>
+            <div class="tenbaiviet">
+                <img src="image_1.jpg">
+                <p>Tên bài viết</p>
+            </div>
+            <div class="tenbaiviet">
+                <img src="image_1.jpg">
+                <p>Tên bài viết</p>
+            </div>
+            <div class="tenbaiviet">
+                <img src="image_1.jpg">
+                <p>Tên bài viết</p>
+            </div>
+            <div class="tenbaiviet">
+                <img src="image_1.jpg">
+                <p>Tên bài viết</p>
+            </div>
+            <div class="tenbaiviet">
+                <img src="image_1.jpg">
+                <p>Tên bài viết</p>
+            </div>
+        </div>
+    </div>
+    <div class="header2">
+        <h1>
+            Các hoạt động của khoa
+        </h1>
+        <div class="hoatdong">
+            <div class="tenhoatdong">
+                <img src="image_2.jpg">
+                <h3>Hoạt động tình nguyện</h3>
+                <ul>
+                    <li>Chi tiết</li>
+                    <li>Tham gia</li>
+                </ul>
+            </div>
+            <div class="tenhoatdong">
+                <img src="image_2.jpg">
+                <h3>Câu lạc bộ ghi ta</h3>
+                <ul>
+                    <li>Chi tiết</li>
+                    <li>Tham gia</li>
+                </ul>
+            </div>
+            <div class="tenhoatdong">
+                <img src="image_2.jpg">
+                <h3>Câu lạc bộ âm nhạc</h3>
+                <ul>
+                    <li>Chi tiết</li>
+                    <li>Tham gia</li>
+                </ul>
+            </div>
+            <div class="tenhoatdong">
+                <img src="image_2.jpg">
+                <h3>Nghiên cứu khoa học sinh viên</h3>
+                <ul>
+                    <li>Chi tiết</li>
+                    <li>Tham gia</li>
+                </ul>
+            </div>
+            <div class="tenhoatdong">
+                <img src="image_2.jpg">
+                <h3>Câu lạc bộ bóng đá</h3>
+                <ul>
+                    <li>Chi tiết</li>
+                    <li>Tham gia</li>
+                </ul>
+            </div>
+            <div class="tenhoatdong">
+                <img src="image_2.jpg">
+                <h3>Câu lạc bộ đàn sáo</h3>
+                <ul>
+                    <li>Chi tiết</li>
+                    <li>Tham gia</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footerhead">
+            <ul>
+                <li>Khoa CNTT - Đại học Kiến Trúc Hà Nội</li>
+                <li>Danh mục</li>
+            </ul>
+        </div>
+        <div class="footerbody">
+            <div class="footerbody1">
+                <ul>
+                    <li>Địa chỉ</li>
+                    <li>Phone</li>
+                    <li>Fax</li>
+                    <li>Mail</li>
+                </ul>
+            </div>
+            <div class="footerbody2">
+                <ul>
+                    <li>Tuyển sinh</li>
+                    <li>Tin tức</li>
+                    <li>Giới thiệu</li>
+                    <li>Khen thưởng</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

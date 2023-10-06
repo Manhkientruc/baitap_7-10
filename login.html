@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bài tập 1 - giao diện giống web khoa</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>
+                Đăng nhập
+            </h2>
+            <form id="loginForm" onsubmit="login(event)">
+                <input type="text" id="username" placeholder="Tài khoản" required>
+                <input type="password" id="password" placeholder="Mật Khẩu" required>
+                <input type="submit" value="Đăng nhập">
+            </form>
+        </div>
+        <script>
+            function login(event) {
+                event.preventDefault();
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                if (username === "admin" && password === "123456"){window.location.href = "index.html"} else {alert("Tài khoản hoặc mật khẩu không đúng")}
+            }
+        </script>
+        <!---tài khoản: admin
+        mật khẩu : 123456-->
+    </body>
+</html>
